@@ -54,6 +54,7 @@ Partial Class DetailForm
         Me.Guna2HtmlLabel11 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.txtAmountWorking = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.txtLate = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         CType(Me.wrkPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.detailsGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -418,11 +419,28 @@ Partial Class DetailForm
         Me.txtLate.Text = ":"
         Me.txtLate.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias
         '
+        'IconButton1
+        '
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Add
+        Me.IconButton1.IconColor = System.Drawing.Color.Black
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 32
+        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.IconButton1.Location = New System.Drawing.Point(12, 419)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.IconButton1.Size = New System.Drawing.Size(138, 38)
+        Me.IconButton1.TabIndex = 33
+        Me.IconButton1.Text = "Add Data"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = True
+        '
         'DetailForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(937, 557)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.txtLate)
         Me.Controls.Add(Me.txtAmountWorking)
         Me.Controls.Add(Me.Guna2HtmlLabel11)
@@ -489,4 +507,5 @@ Partial Class DetailForm
     Friend WithEvents Guna2HtmlLabel11 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents txtAmountWorking As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents txtLate As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

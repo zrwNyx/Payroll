@@ -38,7 +38,7 @@ Public Class DetailForm
         Dim query As String = "SELECT * FROM workers WHERE name LIKE '%" & name & "%'"
         BukaKoneksi()
         DAdapter = New OdbcDataAdapter(query, Conn)
-        Dim dataTable As New DataTable("workers")
+        Dim dataTable As New DataTable("a")
         DAdapter.Fill(dataTable)
         Dim rowData(9) As String
         If dataTable.Rows.Count > 0 Then
