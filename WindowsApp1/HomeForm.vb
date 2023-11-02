@@ -1,4 +1,5 @@
-﻿Imports System.Data.Odbc
+﻿Imports System.CodeDom
+Imports System.Data.Odbc
 Imports System.Windows.Forms.DataVisualization.Charting
 
 Public Class HomeForm
@@ -6,6 +7,8 @@ Public Class HomeForm
     Dim StringDB As String
     Dim DAdapter As OdbcDataAdapter
     Dim SAdapter As OdbcDataAdapter
+    Dim GAdapter As OdbcDataAdapter
+    Dim EAdapter As OdbcDataAdapter
     Public Sub BukaKoneksi()
         StringDB = "Driver={postgreSQL ANSI};database=worker;port=5432;server=localhost;uid=postgres;password=setiawanamb"
         Conn = New OdbcConnection(StringDB)
@@ -49,12 +52,44 @@ Public Class HomeForm
         End With
 
     End Sub
+
+
+    Public Sub DisplayBarChart(Adapter As OdbcDataAdapter, tableName As DataTable, chart As Chart, query As String, b As String())
+        Adapter = New OdbcDataAdapter(query, Conn)
+        Adapter.Fill(tableName)
+
+        Dim arrGend(tableName.Columns.Count - 1, tableName.Rows.Count - 1) As String
+        For i As Integer = 0 To tableName.Columns.Count - 1
+            For j As Integer = 0 To tableName.Rows.Count - 1
+                arrGend(i, j) = tableName.Rows(j)(i).ToString()
+            Next
+        Next
+
+        With chart
+            .Series.Clear()
+            .Series.Add(b(0))
+            .Series.Add(b(1))
+            .Series(b(0)).ChartType = SeriesChartType.Bar
+            .Series(b(1)).ChartType = SeriesChartType.Bar
+            .Series(b(1)).Points.AddY(arrGend(1, 0))
+            .Series(b(0)).Points.AddY(arrGend(1, 1))
+            .ChartAreas(0).AxisX.LabelStyle.Enabled = False
+
+        End With
+
+    End Sub
+
+
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As String = "SELECT a.name, SUM(CAST(EXTRACT(EPOCH FROM (checkouthour - checkinhour)) / 60 AS INTEGER)) FROM attendance b JOIN workers a ON a.id = b.workerid GROUP BY a.name ORDER BY 2 DESC"
         Dim query2 As String = "SELECT a.name, CAST(SUM(EXTRACT(HOUR FROM (b.checkouthour - b.checkinhour)) * a.salary_per_hour) AS INTEGER)FROM attendance b JOIN workers a ON a.id = b.workerid GROUP BY a.name ORDER BY 2 DESC"
         Dim query3 As String = "SELECT CAST(SUM(EXTRACT(HOUR FROM (b.checkouthour - b.checkinhour)) * a.salary_per_hour) AS INTEGER)FROM attendance b JOIN workers a ON a.id = b.workerid "
+        Dim query4 As String = "SELECT gender , COUNT(*) FROM workers GROUP BY gender"
+        Dim query5 As String = "SELECT employment_status , COUNT(*) FROM workers GROUP BY employment_status"
         Dim dataTable As New DataTable("b")
         Dim dataTable2 As New DataTable("c")
+        Dim dataTable3 As New DataTable("d")
+        Dim dataTable4 As New DataTable("e")
         Dim scale1() As Integer = {15000, 16500, 200}
         Dim scale2() As Integer = {4300, 9500, 1000}
         BukaKoneksi()
@@ -63,9 +98,10 @@ Public Class HomeForm
         Dim command As New OdbcCommand(query3, Conn)
         Dim totalPaid As Object = command.ExecuteScalar()
         lblTotalSal.Text = "$ " & totalPaid.ToString()
-
-
-
+        Dim label As String() = {"Female", "Male"}
+        Dim label2 As String() = {"Full-Time", "Part-Time"}
+        DisplayBarChart(GAdapter, dataTable3, genderChart, query4, label)
+        DisplayBarChart(EAdapter, dataTable4, typeChart, query5, label2)
 
 
     End Sub

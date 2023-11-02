@@ -31,6 +31,9 @@ Partial Class HomeForm
         Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
         Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend4 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -48,7 +51,8 @@ Partial Class HomeForm
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.genderChart = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.typeChart = New System.Windows.Forms.DataVisualization.Charting.Chart()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +62,8 @@ Partial Class HomeForm
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.genderChart, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.typeChart, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Guna2HtmlLabel2
@@ -251,28 +256,61 @@ Partial Class HomeForm
         Me.Guna2HtmlLabel5.TabIndex = 17
         Me.Guna2HtmlLabel5.Text = "Employee Type"
         '
-        'Chart1
+        'genderChart
         '
         ChartArea3.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea3)
+        ChartArea3.Position.Auto = False
+        ChartArea3.Position.Height = 94.0!
+        ChartArea3.Position.Width = 68.49361!
+        ChartArea3.Position.X = 24.0!
+        ChartArea3.Position.Y = 3.0!
+        Me.genderChart.ChartAreas.Add(ChartArea3)
+        Legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
         Legend3.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend3)
-        Me.Chart1.Location = New System.Drawing.Point(205, 424)
-        Me.Chart1.Name = "Chart1"
+        Me.genderChart.Legends.Add(Legend3)
+        Me.genderChart.Location = New System.Drawing.Point(37, 396)
+        Me.genderChart.Name = "genderChart"
         Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar
         Series3.Legend = "Legend1"
         Series3.Name = "Series1"
-        Me.Chart1.Series.Add(Series3)
-        Me.Chart1.Size = New System.Drawing.Size(300, 300)
-        Me.Chart1.TabIndex = 18
-        Me.Chart1.Text = "Chart1"
+        Series3.YValuesPerPoint = 4
+        Me.genderChart.Series.Add(Series3)
+        Me.genderChart.Size = New System.Drawing.Size(411, 159)
+        Me.genderChart.TabIndex = 18
+        Me.genderChart.Text = "Chart1"
+        '
+        'typeChart
+        '
+        ChartArea4.Name = "ChartArea1"
+        ChartArea4.Position.Auto = False
+        ChartArea4.Position.Height = 94.0!
+        ChartArea4.Position.Width = 68.49361!
+        ChartArea4.Position.X = 30.0!
+        ChartArea4.Position.Y = 3.0!
+        Me.typeChart.ChartAreas.Add(ChartArea4)
+        Legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
+        Legend4.Name = "Legend1"
+        Me.typeChart.Legends.Add(Legend4)
+        Me.typeChart.Location = New System.Drawing.Point(532, 396)
+        Me.typeChart.Name = "typeChart"
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar
+        Series4.Legend = "Legend1"
+        Series4.Name = "Series1"
+        Series4.YValuesPerPoint = 4
+        Me.typeChart.Series.Add(Series4)
+        Me.typeChart.Size = New System.Drawing.Size(411, 159)
+        Me.typeChart.TabIndex = 19
+        Me.typeChart.Text = "Chart1"
         '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(992, 582)
-        Me.Controls.Add(Me.Chart1)
+        Me.Controls.Add(Me.typeChart)
+        Me.Controls.Add(Me.genderChart)
         Me.Controls.Add(Me.Guna2HtmlLabel5)
         Me.Controls.Add(Me.Guna2HtmlLabel4)
         Me.Controls.Add(Me.PictureBox7)
@@ -301,7 +339,8 @@ Partial Class HomeForm
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.genderChart, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.typeChart, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -323,5 +362,6 @@ Partial Class HomeForm
     Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2HtmlLabel5 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Chart1 As DataVisualization.Charting.Chart
+    Friend WithEvents genderChart As DataVisualization.Charting.Chart
+    Friend WithEvents typeChart As DataVisualization.Charting.Chart
 End Class
